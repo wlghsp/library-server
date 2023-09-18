@@ -35,13 +35,13 @@ public class Book {
         this.bookName = name;
     }
 
-    public void loadBook(User user) {
+    public void loanBook(User user) {
         this.bookLoanHistories.add(new BookLoanHistory(this, user));
     }
 
-    public void returnBook(String bookName) {
+    public void returnBook(Book book) {
         BookLoanHistory bookLoanHistory = this.bookLoanHistories.stream()
-                .filter(history -> history.getBookName().equals(bookName))
+                .filter(history -> history.getBook().equals(book))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
         bookLoanHistory.doReturn();

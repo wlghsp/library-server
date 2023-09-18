@@ -34,6 +34,7 @@ public class BookLoanHistory {
     public BookLoanHistory(Book book, User user) {
         this.book = book;
         this.user = user;
+        this.bookName = book.getBookName();
         this.isReturn = false;
         this.loanDate = LocalDateTime.now();
     }
