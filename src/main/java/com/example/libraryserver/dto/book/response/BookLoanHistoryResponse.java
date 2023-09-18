@@ -20,9 +20,9 @@ public class BookLoanHistoryResponse {
 
     private boolean isReturn;
 
-    private LocalDateTime loanDate; // 대출 일자
+    private LocalDateTime loanDate;
 
-    private LocalDateTime returnDate; // 반납 일자
+    private LocalDateTime returnDate;
 
     public BookLoanHistoryResponse(Long id, Book book, User user, String bookName, boolean isReturn, LocalDateTime loanDate, LocalDateTime returnDate) {
         this.id = id;
