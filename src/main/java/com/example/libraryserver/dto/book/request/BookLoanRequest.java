@@ -5,5 +5,6 @@ import lombok.Getter;
 @Getter
 public class BookLoanRequest {
     private String userId;
+
     private Long bookId;
 }
