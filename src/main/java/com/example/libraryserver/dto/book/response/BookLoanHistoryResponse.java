@@ -1,8 +1,6 @@
 package com.example.libraryserver.dto.book.response;
 
-import com.example.libraryserver.domain.book.Book;
 import com.example.libraryserver.domain.book.loanhistory.BookLoanHistory;
-import com.example.libraryserver.domain.user.User;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -11,23 +9,17 @@ import java.time.LocalDateTime;
 public class BookLoanHistoryResponse {
 
     private Long id;
-
-    private Book book;
-
-    private User user;
-
+    private long bookId;
+    private String userId;
     private String bookName;
-
     private boolean isReturn;
-
     private LocalDateTime loanDate;
-
     private LocalDateTime returnDate;
 
-    public BookLoanHistoryResponse(Long id, Book book, User user, String bookName, boolean isReturn, LocalDateTime loanDate, LocalDateTime returnDate) {
+    public BookLoanHistoryResponse(Long id, long bookId, String userId, String bookName, boolean isReturn, LocalDateTime loanDate, LocalDateTime returnDate) {
         this.id = id;
-        this.book = book;
-        this.user = user;
+        this.bookId = bookId;
+        this.userId = userId;
         this.bookName = bookName;
         this.isReturn = isReturn;
         this.loanDate = loanDate;
@@ -36,8 +28,8 @@ public class BookLoanHistoryResponse {
 
     public BookLoanHistoryResponse(BookLoanHistory bookLoanHistory) {
         this.id = bookLoanHistory.getId();
-        this.book = bookLoanHistory.getBook();
-        this.user = bookLoanHistory.getUser();
+        this.bookId = bookLoanHistory.getBook().getId();
+        this.userId = bookLoanHistory.getUser().getUserId();
         this.bookName = bookLoanHistory.getBookName();
         this.isReturn = bookLoanHistory.isReturn();
         this.loanDate = bookLoanHistory.getLoanDate();

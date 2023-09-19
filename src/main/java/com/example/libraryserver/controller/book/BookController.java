@@ -5,6 +5,7 @@ import com.example.libraryserver.dto.book.request.BookLoanRequest;
 import com.example.libraryserver.dto.book.request.BookReturnRequest;
 import com.example.libraryserver.dto.book.request.BookUpdateRequest;
 import com.example.libraryserver.dto.book.response.BookLoanHistoryResponse;
+import com.example.libraryserver.dto.book.response.BookResponse;
 import com.example.libraryserver.service.book.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -22,19 +23,24 @@ public class BookController {
         bookService.saveBook(request);
     }
 
+    @GetMapping("/book")
+    public List<BookResponse> getBooks() {
+        return bookService.getBooks();
+    }
+
     @PutMapping("/book")
     public void updateBook(@RequestBody BookUpdateRequest request) {
         bookService.updateBook(request);
     }
 
-    @GetMapping("/book/history/{id}")
-    public List<BookLoanHistoryResponse> getBookHistory(@PathVariable Long id) {
-        return bookService.getBookLoanHistoryList(id);
-    }
-
     @PostMapping("/book/loan")
     public void loanBook(@RequestBody BookLoanRequest request) {
         bookService.loanBook(request);
+    }
+
+    @GetMapping("/book/history/{bookId}")
+    public List<BookLoanHistoryResponse> getBookHistory(@PathVariable Long bookId) {
+        return bookService.getBookLoanHistoryList(bookId);
     }
 
     @PutMapping("/book/return")

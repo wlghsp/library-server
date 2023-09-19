@@ -21,18 +21,23 @@ public class Book {
     @Column(nullable = false)
     private String bookName;
 
+    @Column(nullable = false)
+    private String author;
+
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookLoanHistory> bookLoanHistories = new ArrayList<>();
 
-    public Book(String bookName) {
+    public Book(String bookName, String author) {
         if (bookName == null || bookName.isBlank()) {
             throw new IllegalArgumentException(String.format("잘못된 bookName(%s)이 들어왔습니다", bookName));
         }
         this.bookName = bookName;
+        this.author = author;
     }
 
-    public void updateBookName(String name) {
+    public void updateBook(String name, String author) {
         this.bookName = name;
+        this.author = author;
     }
 
     public void loanBook(User user) {

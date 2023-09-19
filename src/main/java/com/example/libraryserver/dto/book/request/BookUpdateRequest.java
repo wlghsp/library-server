@@ -6,4 +6,5 @@ import lombok.Getter;
 public class BookUpdateRequest {
     private Long id;
     private String bookName;
+    private String author;
 }

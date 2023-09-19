@@ -10,6 +10,7 @@ import com.example.libraryserver.dto.book.request.BookLoanRequest;
 import com.example.libraryserver.dto.book.request.BookReturnRequest;
 import com.example.libraryserver.dto.book.request.BookUpdateRequest;
 import com.example.libraryserver.dto.book.response.BookLoanHistoryResponse;
+import com.example.libraryserver.dto.book.response.BookResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,19 +28,27 @@ public class BookService {
 
     @Transactional
     public void saveBook(BookCreateRequest request) {
-        bookRepository.save(new Book(request.getBookName()));
+        bookRepository.save(new Book(request.getBookName(), request.getAuthor()));
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookResponse> getBooks() {
+        List<Book> books = bookRepository.findAll();
+        return books.stream()
+                .map(BookResponse::new)
+                .collect(Collectors.toList());
     }
 
     @Transactional
     public void updateBook(BookUpdateRequest request) {
         Book book = bookRepository.findById(request.getId()).orElseThrow(IllegalArgumentException::new);
-        book.updateBookName(request.getBookName());
+        book.updateBook(request.getBookName(), request.getAuthor());
     }
 
 
     @Transactional
     public void loanBook(BookLoanRequest request) {
-        Book book = bookRepository.findByBookName(request.getBookName())
+        Book book = bookRepository.findById(request.getBookId())
                 .orElseThrow(IllegalArgumentException::new);
 
         if (bookLoanHistoryRepository.existsByBookAndIsReturn(book, false)) {
