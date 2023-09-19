@@ -1,4 +1,4 @@
-name: coinTalk chatRoom server CI/CD
+name: library server CI/CD
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  S3_BUCKET_NAME: cointalk-deploy
+  S3_BUCKET_NAME: library-deploy
 
 jobs:
   build:
