@@ -18,10 +18,6 @@ spring:
         dialect: org.hibernate.dialect.H2Dialect
     open-in-view: false
 
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-
 ---
 spring:
   config:
@@ -42,6 +38,3 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
     open-in-view: false
 
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
