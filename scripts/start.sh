@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT_PATH="/home/ubuntu/library-server"
-JAR="$ROOT_PATH/application.jar"
+JAR="$ROOT_PATH/app.jar"
 
 APP_LOG="$ROOT_PATH/application.log"
 ERROR_LOG="$ROOT_PATH/error.log"
@@ -10,7 +10,7 @@ START_LOG="$ROOT_PATH/start.log"
 NOW=$(date +%c)
 
 echo "[$NOW] $JAR 복사" >> $START_LOG
-cp $ROOT_PATH/build/libs/library-server-1.0.0.jar $JAR
+cp $ROOT_PATH/build/libs/app.jar $JAR
 
 echo "[$NOW] > $JAR 실행" >> $START_LOG
 nohup java -jar $JAR > $APP_LOG 2> $ERROR_LOG &
