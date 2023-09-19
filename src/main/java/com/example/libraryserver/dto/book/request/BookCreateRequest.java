@@ -5,5 +5,6 @@ import lombok.Getter;
 @Getter
 public class BookCreateRequest {
     private String bookName;
+
     private String author;
 }
